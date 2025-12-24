@@ -1,36 +1,54 @@
 import os
 from PyPDF2 import PdfMerger
 
-# Folder's names and paths
-input_folder = "in"
-output_folder = "out"
-output_file = "blank.pdf"
+def main():
+    try:
+        os.system('cls' if os.name == 'nt' else 'clear')
+    except:
+        ...
+    # Folder's names and paths
+    input_folder = "in"
+    output_folder = "out"
+    output_file = "blank.pdf"
 
-# Creates the output folder if it doesn't exist.
-os.makedirs(output_folder, exist_ok=True)
+    # Creates the output folder if it doesn't exist.
+    os.makedirs(output_folder, exist_ok=True)
 
-# Merger initialization
-merger = PdfMerger()
+    # Merger initialization
+    merger = PdfMerger()
 
-# Takes all the .pdf from the input folder
-pdf_files = [f for f in os.listdir(input_folder)
-    if f.lower().endswith(".pdf")]
+    try:
+        # Takes all the .pdf from the input folder
+        pdf_files = [f for f in os.listdir(input_folder)
+            if f.lower().endswith(".pdf")]
+    except:
+        print("No \'in\' folder found. Impossible to merge pdfs.")
+        return
 
-print(pdf_files)
-print("These are the pdfs that will be merged.")
-output_file = input("What should be the <name> of the result? ")
+    if pdf_files == []:
+        print("The input folder does not contain pdfs to merge.")
+        return
 
-if not output_file.endswith(".pdf"):
-    output_file += ".pdf"
+    print(pdf_files)
+    print("These are the pdfs that will be merged.")
+    output_file = input("What should be the name of the result? ")
 
-# Adds pdfs to merger
-for pdf in pdf_files:
-    pdf_path = os.path.join(input_folder, pdf)
-    merger.append(pdf_path)
+    if not output_file.endswith(".pdf"):
+        output_file += ".pdf"
 
-# Writes the resulting merged pdf
-output_path = os.path.join(output_folder, output_file)
-merger.write(output_path)
-merger.close()
+    # Adds pdfs to merger
+    for pdf in pdf_files:
+        pdf_path = os.path.join(input_folder, pdf)
+        merger.append(pdf_path)
 
-print(f"Merged PDF created in: {output_path}")
+    # Writes the resulting merged pdf
+    output_path = os.path.join(output_folder, output_file)
+    merger.write(output_path)
+    merger.close()
+
+    print(f"Merged PDF created in: {output_path}")
+
+if __name__ == '__main__':
+    main()
+    print("\nFarewell dear user.")
+    input()
