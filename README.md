@@ -16,9 +16,9 @@ pip install -r requirements.txt
 
 ## How to use
 
-To use this simple script all you need to do is place inside the `toMerge` folder the pdfs you want to merge.
+To use this simple script all you need to do is place inside the `in` folder the pdfs you want to merge.
 The script will take all the .pdf files in alphabetical order and merge them into a single one.
-The result will be added to the `merged` folder.
+The result will be added to the `out` folder.
 You can choose the name of the output.
 
 If you have python installed, you can run the command:
@@ -26,6 +26,3 @@ If you have python installed, you can run the command:
 ```
 python merge_pdf.py
 ```
-
-If you are on windows and 
-
